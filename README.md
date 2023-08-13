@@ -28,4 +28,4 @@ This project explores improving deep reinforcement learning algorithms like LOGO
 
 ## Reference
 
-[Li, Fucheng, Shelvin Pauly. "Deep Reinforcement Learning for Sparse Rewards." 2022](CMSC828A_Project_Report.pdf)
+[Li, Fucheng, Shelvin Pauly. "Deep Reinforcement Learning for Sparse Rewards." 2022](CMSC828w_Final_Report.pdf)
