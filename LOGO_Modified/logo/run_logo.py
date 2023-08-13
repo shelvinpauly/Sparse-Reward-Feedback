@@ -83,12 +83,11 @@ parser.set_defaults(use_ddqn=False)
 
 args = parser.parse_args()
 
-data_path = '/fs/classhomes/fall2022/cmsc828w/c828w030/project/cmsc828w-project/LOGO_Modified/logo/data'
 
 nn_size = tuple(args.nn_param)
 if (args.env_num == 1):
 	args.env_name = 'Hopper-v2'
-	args.demo_traj_path = data_path + '/Hopper-v2_data.p'	
+	args.demo_traj_path = 'data/Hopper-v2_data.p'	
 	args.K_delta = 50	
 	args.sparse_val = 2.
 	env_tag = 'Sparse2'
@@ -108,7 +107,7 @@ if (args.env_num == 1):
 
 elif (args.env_num == 2):
 	args.env_name = 'Hopper-v2'
-	args.demo_traj_path = data_path + '/Hopper-v2_data.p'
+	args.demo_traj_path = 'data/Hopper-v2_data.p'
 	args.K_delta = 50	
 	args.sparse_val = 2.
 	env_tag = 'Censored_Sparse2'
@@ -126,7 +125,7 @@ elif (args.env_num == 2):
 
 elif (args.env_num == 3):
 	args.env_name = 'HalfCheetah-v2'
-	args.demo_traj_path = data_path + '/HalfCheetah-v2_data.p'	
+	args.demo_traj_path = 'data/HalfCheetah-v2_data.p'	
 	args.K_delta = 50	
 	args.sparse_val = 20.
 	env_tag = 'Sparse20'
@@ -148,7 +147,7 @@ elif (args.env_num == 3):
 
 elif (args.env_num == 4):
 	args.env_name = 'HalfCheetah-v2'
-	args.demo_traj_path = data_path + '/HalfCheetah-v2_data.p'
+	args.demo_traj_path = 'data/HalfCheetah-v2_data.p'
 	args.K_delta = 50	
 	args.sparse_val = 20.
 	env_tag = 'Censored_Sparse20'
@@ -170,7 +169,7 @@ elif (args.env_num == 4):
 
 elif (args.env_num == 5):
 	args.env_name = 'Walker2d-v2'
-	args.demo_traj_path = data_path + '/Walker2d-v2_data.p'		
+	args.demo_traj_path = 'data/Walker2d-v2_data.p'		
 	args.K_delta = 50	
 	args.sparse_val = 2.
 	env_tag = 'Sparse2'
@@ -191,7 +190,7 @@ elif (args.env_num == 5):
 
 elif (args.env_num == 6):
 	args.env_name = 'Walker2d-v2'
-	args.demo_traj_path = data_path + '/Walker2d-v2_data.p'
+	args.demo_traj_path = 'data/Walker2d-v2_data.p'
 	args.K_delta = 50	
 	args.sparse_val = 2.
 	env_tag = 'Censored_Sparse2'
@@ -209,7 +208,7 @@ elif (args.env_num == 6):
 
 elif (args.env_num == 7):
 	args.env_name = 'InvertedDoublePendulum-v2'
-	args.demo_traj_path = data_path + '/InvertedDoublePendulum-v2_data.p'	
+	args.demo_traj_path = 'data/InvertedDoublePendulum-v2_data.p'	
 	args.K_delta = 5
 	args.delay_val = 1000
 	env_tag = 'Dealy1000'
@@ -230,7 +229,7 @@ elif (args.env_num == 7):
 
 elif (args.env_num == 8):
 	args.env_name = 'InvertedDoublePendulum-v2'
-	args.demo_traj_path = data_path + '/InvertedDoublePendulum-v2_data.p'
+	args.demo_traj_path = 'data/InvertedDoublePendulum-v2_data.p'
 	args.K_delta = 5
 	args.delay_val = 1000
 	env_tag = 'Censored_Dealy1000'
@@ -261,15 +260,9 @@ else:
 
 	
 ##########################################################################
-name = 'Results/Env_{}_{}/LOGO_{}'.format(env_tag,args.env_name,datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
-if args.use_ddqn:
-	print("hello")
-	name += '_ddqn'
-if args.clip_epsilon != 0:
-	name += '_PPO'
 
-writer = SummaryWriter(name)
-
+writer = SummaryWriter('Results/Env_{}_{}/LOGO_{}'
+		.format(env_tag,args.env_name,datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")))
 
 if args.K_delta > -1:
 	print('Adaptive Decay')

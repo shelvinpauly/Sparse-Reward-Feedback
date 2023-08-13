@@ -111,13 +111,10 @@ def trpo_step(policy_net, value_net_1, value_net_2, states, actions, returns, ad
     def get_loss(volatile=False):
         with torch.set_grad_enabled(not volatile):
             log_probs = policy_net.get_log_prob(states, actions)
-            if epsilon == 0:
-                action_loss = -advantages * torch.exp(log_probs - fixed_log_probs)
-            else:
-                action_loss = -torch.min(
-                    advantages * torch.exp(log_probs - fixed_log_probs),
-                    advantages * torch.clip(torch.exp(log_probs - fixed_log_probs), 1- epsilon, 1 + epsilon)
-                    )
+            action_loss = -torch.min(
+                advantages * torch.exp(log_probs - fixed_log_probs),
+                advantages * torch.clip(torch.exp(log_probs - fixed_log_probs), 1- epsilon, 1 + epsilon)
+                )
             return action_loss.mean()
 
     """use fisher information matrix for Hessian*vector"""
